@@ -2,6 +2,8 @@
 # Run PCS base and example clients tests
 #=============================================================================
 
+set -x
+
 run_tests()
 {
 _ret=0
@@ -43,7 +45,7 @@ valgrind --version
 #-- First, run base dir tests
 
 run_tests
-[ $? != 0 ] && ret=$?
+[ $? = 0 ] || ret=$?
 
 #-- Then, test the client extensions
 
@@ -52,12 +54,12 @@ make install
 cd examples/pcs_test
 
 run_tests
-[ $? != 0 ] && ret=$?
+[ $? = 0 ] || ret=$?
 
 cd ../example1
 
 run_tests
-[ $? != 0 ] && ret=$?
+[ $? = 0 ] || ret=$?
 
 #----
 
